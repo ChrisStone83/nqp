@@ -16,15 +16,17 @@
     <form>    
         <div id = "Textfelder">
             <label for="a">a:</label>
-            <input type ="text" id="a">
+            <input type ="text" id="a" value="4">
             <label for="b">b:</label>
-            <input type ="text" id="b">
+            <input type ="text" id="b" value="8">
             <label for="c">c:</label>
-            <input type ="text" id="c">
+            <input type ="text" id="c" value="3">
+            
         </div>
-        <button type="button" onklick="">Nullstellen berechnen</button>
+        <button onclick="calculate()">Nullstellen berechnen</button>
     </form>
-    <p id="test"></p>
+    <div id="ergebnis"></div>
+    <canvas></canvas>
     <script src="script.js"></script>
 </body>
 </html>
