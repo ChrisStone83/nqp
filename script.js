@@ -1,6 +1,6 @@
 'use strict'
-
-
+const MIN = -10
+const MAX = 10
 
 function mitternacht(a,b,c){
     var x = []
@@ -14,29 +14,44 @@ function calculate(){
     var b = parseFloat(document.getElementById("b").value);
     var c = parseFloat(document.getElementById("c").value);
     var x = mitternacht(a,b,c);
-    var ergText = "Das Polynom " + a +"x^2 +" + b + "x +" + c +" hat die Nullstellen x1 = "+ x[0] + ", x2= "+ x[1]; 
+    var ergText = "Das Polynom " + a +"x² +" + b + "x + " + c +" hat die Nullstellen x1 = "+ x[0] + ", x2= "+ x[1]; 
 
     const ergP = document.createElement("p");
     ergP.innerHTML = ergText;
     document.getElementById("ergebnis").innerHTML = "";
     document.getElementById("ergebnis").appendChild(ergP);
 
-
+    visualizeResult(x,a,b,c);
 }
-
-function drawCoordInCanvas(){
-    console.log("drawCoordInCanvas aufgerufen");
-    var canvas = document.getElementById("CV");
-    if (!canvas) {
-        console.error("Canvas-Element nicht gefunden!");
-        return;
+function drawLine(ctx, direction, from, too){
+    
+    var half = too / 2;
+    
+    if (direction =="vertical"){
+        
+        ctx.moveTo(half, from);
+        ctx.lineTo(half, too);
+        ctx.stroke();
+    }else{
+        ctx.moveTo(from, half);
+        ctx.lineTo(too, half);
+        ctx.stroke();
     }
-    var ctx = canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(200, 100);
-    ctx.stroke();
+    
 }
-window.onload = function() {
-    drawCoordInCanvas();
-};
+
+function visualizeResult(x, a, b, c){
+    /* Koordinatensystem */
+    var canvas = document.getElementById("CV");
+    var ctx = canvas.getContext("2d");
+    var vert = true;
+    ctx.beginPath();
+    /*for (var i = 0; i <= 1; i++){
+        drawLine(ctx, vert, 0, 400);
+        vert = false
+    }*/
+        drawLine(ctx, "vertical", 0, 400)
+        drawLine(ctx, "horizontal", 0, 400)
+    /*Parabel und Nullpunkte*/
+
+}
